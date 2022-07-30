@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ch#erifob$-m25fm&c7tcol8j)+7vzbm$($x=$-&e*^s4c+ta!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1:8000',"online-orderr.herokuapp.com"]
 
 
 # Application definition
