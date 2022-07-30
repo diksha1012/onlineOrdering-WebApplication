@@ -1,0 +1,74 @@
+{
+
+    "status": "success",
+    "items": [{
+            "id": 1,
+            "title": "Honey Garlic Chicken",
+            "price": 135,
+            "image": "./static/images/chicken.jpeg"
+        },
+        {
+            "id": 2,
+            "title": "Smoky Hamburger",
+            "price": 950,
+            "image": "./static/images/burger.jpg"
+        },
+        {
+            "id": 3,
+            "title": "BBQ Sandwich",
+            "price": 750,
+            "image": "./static/images/Sandwich.jpeg"
+        },
+        {
+            "id": 4,
+            "title": "Manchow Soup",
+            "price": 999,
+            "image": "./static/images/soup.jpeg"
+        },
+        {
+            "id": 5,
+            "title": "Roast Salmon",
+            "price": 250,
+            "image": "./static/images/salmon.jpeg"
+
+        },
+        {
+            "id": 6,
+            "title": "Basil Pesto Spaghetti",
+            "price": 850,
+            "image": "./static/images/Spaghetti.jpeg"
+
+        },
+        {
+            "id": 7,
+            "title": "South Indian Idli",
+            "price": 600,
+            "image": "./static/images/idli.jpg"
+        },
+        {
+            "id": 8,
+            "title": "Coca Cola Cold Drink",
+            "price": 350,
+            "image": "./static/images/cocacola.jpg"
+        },
+        {
+            "id": 9,
+            "title": "Sprite Cold Drink",
+            "price": 799,
+            "image": "./static/images/spirite.jpg"
+        },
+        {
+            "id": 10,
+            "title": "Desi Samosa",
+            "price": 20,
+            "image": "./static/images/samosaa.jpg"
+        },
+        {
+            "id": 11,
+            "title": "Chinese Momos",
+            "price": 60,
+            "image": "/static/images/momos.jpg"
+        }
+    ]
+
+}

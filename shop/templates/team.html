@@ -1,0 +1,110 @@
+{% comment %} <!doctype html>
+<html lang="en">
+  <head>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Shopping Cart Project</title>
+  </head>
+  <body style=" background-color: aquamarine;">
+
+   
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">MenuQ</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <a class="navbar-brand" href="/team">Team</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+         
+        
+        
+        </ul>
+
+       
+       
+        <ul class="navbar-nav my-2 my-lg-0">
+            {%if request.session.customer%}
+          <li class="nav-item">
+            <a class="nav-link" href="/cart">Cart
+                
+                         <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+                         <!-- <span class="badge badge-info">{{request.session.cart.keys|length}}</span> -->
+    
+                <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/orders">Orders<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/signup/">SignUp<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login/">Login<span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+        
+        </ul>
+
+        
+        
+      </div>
+    </nav>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container" style="color:white">
+      <center><h16 style="color: white; font-size: xx-large;">BUGSQUASHERS</h1></center>
+      <div class="row">
+       
+        <div class="col-sm">
+          <br><br><br><br><br><br>
+          <img src="">
+          <h4 style="color: brown;">Team Member 1</h4>
+          <br><br>
+        <h7>DIKSHA TRIVEDI</h7>
+        </div>
+        <div class="col-sm">
+          <br><br><br><br><br><br>
+          <img src="" >
+          <h4 style="color: brown;">Team Member 2</h4>
+          <br><br>
+         <h7>AYUSH KUMAR</h7> 
+        </div>
+        <div class="col-sm">
+          <br><br><br><br><br><br>
+          <img src="" >
+          <h4 style="color: brown;">Team Member 3</h4>
+          <br><br>
+          <h7>MANASVI</h7>
+        </div>
+      </div>
+    </div>
+
+
+
+  
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html> {% endcomment %}

@@ -1,0 +1,163 @@
+{% comment %} {%loaad static%} {% endcomment %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Shopping Cart Project</title>
+  </head>
+  <body>
+
+    <!-- navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">MenuQ</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+         
+        
+        
+        </ul>
+
+       
+       
+        <ul class="navbar-nav my-2 my-lg-0">
+            {%if request.session.customer%}
+          <li class="nav-item">
+            <a class="nav-link" href="/cart">Cart<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/orders">Orders<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/signup/">SignUp<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login/">Login<span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+        
+        </ul>
+
+        
+        
+      </div>
+    </nav>
+
+
+<!-- cart -->
+{% load cart %}
+{% load custom_filter %}
+<div class="container">
+   <div class="border rounded p-4 m-4">
+        <p class="display-4 pl-4 ml-4">Your Cart</p>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sno.</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for product in products %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img style="height: 80px;" class="rounded-circle" src="{{product.image.url}}" alt=""></td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price|currency}}</td>
+                    <td>{{product|cart_quantity:request.session.cart}}</td>
+                    <td>{{product|price_total:request.session.cart|currency}}</td>
+                </tr>
+
+                {% endfor %}
+               
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <th colspan="4"></th>
+                    <th class="" colspan="">Total</th>
+                    <th>{{products|total_cart_price:request.session.cart|currency}}</th>
+                </tr>
+            </tfoot>
+        </table>
+        <hr>
+        <div class="m-3 p-3">
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">Check out</a>
+        </div>
+   </div>
+</div>
+
+
+<!-- modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+              Check Out Form
+          </h5>
+          <hr>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="m-2 p-3">
+            <form action="/check-out/" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <!-- <label for="">Address</label>
+                  <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
+                </div>-->
+                <div class="form-group">
+                    <label for="">Phone</label>
+                    <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  </div> 
+
+                  <input type="submit" class="btn float-right btn-outline-info col-lg-6" value="Check out">
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+  {% comment %} <script src="{%static 'script.js'%}" type="text/javascipt"></script> {% endcomment %}
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Shopping Cart Project</title>
+  </head>
+  <body>
+
+    <!-- navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">MenuQ</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+         
+        
+        
+        </ul>
+
+       
+       
+        <ul class="navbar-nav my-2 my-lg-0">
+            {%if request.session.customer%}
+          <li class="nav-item">
+            <a class="nav-link" href="/cart">Cart
+                
+                         <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+                         <!-- <span class="badge badge-info">{{request.session.cart.keys|length}}</span> -->
+    
+                <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/orders">Orders<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/signup/">SignUp<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login/">Login<span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+        
+        </ul>
+
+        
+        
+      </div>
+    </nav>
+
+
+    <!-- body -->
+    <!-- <h1>{{products}}</h1> -->
+
+    {% load cart %}
+{% load custom_filter %}
+
+    <div class="container">
+        <div class="border rounded p-4 m-4">
+             <p class="display-4 pl-4 ml-4">Your Orders</p>
+             <hr>
+             <table class="table">
+                 <thead>
+                     <tr>
+                         <th>Sno.</th>
+                         <th>Image</th>
+                         <th>Product</th>
+                         <th>Date</th>
+                         <th>Price</th>
+                         <th>Quantity</th>
+                         <th>Total</th>
+                         <th>Status</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     
+                     {% for order in orders %}
+                     <tr>
+                         <td>{{forloop.counter}}</td>
+                         <td><img style="height: 80px;" class="rounded-circle" src="{{order.product.image.url}}" alt=""></td>
+                         <td>{{order.product.name}}</td>
+                         <td>{{order.date}}</td>
+                         <td>{{order.price|currency}}</td>
+                         <td>{{order.quantity}}</td>
+                         <td>{{order.quantity|multiply:order.price|currency}}</td>
+                         {% if order.status %}
+                         <td><small class="badge badge-success">Completed</small></td>
+                         {%else%}
+                         <td><small class="badge badge-warning">Pending</small></td>
+                         {% endif %}
+                     </tr>
+     
+                     {% endfor %}
+                    
+                 </tbody>
+     
+             </table>
+            
+        </div>
+     </div>
+
+
+ 
+ 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
